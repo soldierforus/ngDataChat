@@ -1,10 +1,14 @@
 <div class="chat-container">
   <div class="messages" #messagesContainer>
-    <div *ngFor="let message of conversation"  [ngClass]="message.role">
+    <div class="data">
+      <img src="../assets/data.webp">
+      <h2>Hello, Captain.  I am awaiting your query...</h2>
+    </div>
+    <div *ngFor="let message of conversation" [ngClass]="message.role">
       <markdown>{{ message.content }}</markdown>
+      <button class="scroll-to-bottom" (click)="scrollToBottom()">&#8595;</button>
     </div>
   </div>
-  <button class="scroll-to-bottom" (click)="scrollToBottom()">&#8595;</button>
   <form (submit)="sendMessage($event, messageInput.value)">
     <textarea #messageInput [(ngModel)]="userMessage" name="userMessage" (keydown.enter)="handleEnterKey($event)"></textarea>
     <button type="submit">Send</button>

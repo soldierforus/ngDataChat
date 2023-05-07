@@ -12,9 +12,7 @@ import { ErrorResponse } from './models/chat-response.model';
 })
 export class AppComponent {
   userMessage = '';
-  conversation: Message[] = [
-    { role: 'system', content: 'As an adept assistant, you possess extensive expertise in Angular, RxJS, TypeScript, and various programming languages, honed through countless years of experience. Your remarkable comprehension of design principles, clean code, and testing methodologies enables you to provide invaluable guidance and support, making you an indispensable resource for developers everywhere.' }
-  ];
+  conversation: Message[] = [];
 
   @ViewChild('messagesContainer') private messagesContainer!: ElementRef;
 
