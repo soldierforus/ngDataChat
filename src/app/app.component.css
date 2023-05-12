@@ -14,11 +14,11 @@
 }
 
 .user {
-  @apply bg-white m-2 ml-20
+  @apply bg-white m-2 ml-10 lg:ml-20
 }
 
 .assistant {
-  @apply bg-gold mr-20;
+  @apply bg-gold mr-10 lg:mr-20;
 }
 
 .error {

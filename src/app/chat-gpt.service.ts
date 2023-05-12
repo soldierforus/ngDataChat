@@ -13,7 +13,6 @@ export class ChatGptService {
   constructor(private http: HttpClient) {}
 
   chat(messages:  Array<{ role: string; content: string }>): Observable<ChatResponse> {
-    console.log("messages", messages);
     const body = {
       model: 'gpt-3.5-turbo',
       messages: messages,
@@ -23,7 +22,6 @@ export class ChatGptService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${environment.chatGptApiKey}`
     };
-    console.log("body", body);
     return this.http.post<ChatResponse>(this.apiUrl, body, { headers });
   }
 }

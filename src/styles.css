@@ -5,3 +5,8 @@
 body {
   margin: 0;
 }
+
+ol, ul {
+  list-style: auto;
+  @apply ml-10;
+}
