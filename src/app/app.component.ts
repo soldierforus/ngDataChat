@@ -1,7 +1,10 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { ChatGptService } from './chat-gpt.service';
 import { catchError, take, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
+import { ClipboardService } from 'ngx-clipboard';
+
+
+import { ChatGptService } from './chat-gpt.service';
 import { Message } from './models/message.model';
 import { ErrorResponse } from './models/chat-response.model';
 
@@ -16,7 +19,7 @@ export class AppComponent {
 
   @ViewChild('messagesContainer') private messagesContainer!: ElementRef;
 
-  constructor(private chatGptService: ChatGptService) {}
+  constructor(private chatGptService: ChatGptService, private clipboardService: ClipboardService) {}
 
   sendMessage(event: Event, message: string): void {
     event.preventDefault();
@@ -49,6 +52,11 @@ export class AppComponent {
     setTimeout(() => {
       this.messagesContainer.nativeElement.scrollTop = this.messagesContainer.nativeElement.scrollHeight;
     }, 0);
+  }
+  
+  copyMessage(message: string) {
+    this.clipboardService.copyFromContent(message)
+    console.log("message", message);
   }
 
   private handleError(error: ErrorResponse): Observable<unknown> {
