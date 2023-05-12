@@ -1,145 +1,26 @@
 :host {
-  display: flex;
-  flex-direction: column;
-  background: url("../assets/lcars.png");
-  background-size: cover;
-  height: 100vh;
-}
-
-.chat-container {
-  background-color: RGBA(0, 0, 0, 0.8);
-  padding: 1.25rem;
-  width: 100%;
-  margin: 10rem 0;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  font-family: 'Roboto', sans-serif;
-  position: relative;
+  @apply flex flex-col bg-cover h-full;
+  background-image: url("../assets/lcars.png");
 }
 
 .messages {
-  max-height: 20rem;
-  min-width: 66%;
-  overflow-y: auto;
-  padding-bottom: .625rem;
+  min-width: 66%
 }
 
 .user,
 .assistant,
 .error {
-  padding: 1rem;
-  border-radius: .5rem;
-  margin-bottom: .5rem;
+  @apply p-4 rounded-lg mb-2 font-medium;
 }
 
 .user {
-  background-color: #fff;
-  color: #000;
-  font-weight: 700;
-  margin: .5rem .5rem .5rem 5rem;
+  @apply bg-white m-2 ml-20
 }
 
 .assistant {
-  background-color: #FFCC00;
-  color: #000;
-  font-weight: 700;
-  margin-right: 5rem;
+  @apply bg-gold mr-20;
 }
 
 .error {
-  background-color: #f8d7da;
-  border-color: #f5c6cb;
-  color: #721c24;
-}
-
-button {
-  padding: 0;
-  border: none;
-  background: transparent;
-}
-
-form {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 1.25rem;
-}
-
-textarea {
-  padding: .625rem;
-  border-radius: .5rem;
-  border: .2rem solid #cccccc;
-  flex-grow: 1;
-  margin-right: .625rem;
-  resize: none;
-  width: calc(100% - 3.75rem  );
-  font-family: 'Roboto', sans-serif;
-}
-
-.submit {
-  background-color: #FFCC00;
-  color: black;
-  border: none;
-  padding: 1rem 2rem;
-  border-radius: .25rem;
-  cursor: pointer;
-  font-weight: 700;
-}
-
-.data {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.data img {
-  max-width: 10rem;
-  margin-bottom: 1rem;
-}
-
-.data h2 {
-  display: flex;
-  align-items: center;
-  margin: 0 0 0 2rem;
-  color: #fff;
-}
-
-.scroll-to-bottom,.copy {
-  position: absolute;
-  bottom: 4rem;
-  right: .625rem;
-  background-color: transparent;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: #fff;
-}
-
-.scroll-to-bottom:hover {
-  color: #FFCC00;
-  background-color: transparent;
-}
-
-.message {
-  position: relative;
-}
-
-.copy {
-  position: absolute;
-  bottom: .75rem;
-  right: .75rem;
-  padding: 0;
-  cursor: pointer;
-}
-
-@media (min-width:  640px) {
-  .data {
-    flex-direction: row;
-    align-items: left;
-  }
-  .chat-container {
-    border-radius: 12px;
-    border: white solid .1rem;
-    margin: 10rem auto;
-    width: 66%;
-  }
+  @apply bg-red-200 border-red-400 text-red-900;
 }

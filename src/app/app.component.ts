@@ -56,9 +56,13 @@ export class AppComponent {
   
   copyMessage(message: string) {
     this.clipboardService.copyFromContent(message)
-    console.log("message", message);
   }
-
+  copyConversation() {
+    let chatArrayToMessages = this.conversation.map(message => message.role +': '+ message.content);
+    let chatToString = chatArrayToMessages.join("\n");
+    this.clipboardService.copyFromContent(chatToString)
+  }
+  
   private handleError(error: ErrorResponse): Observable<unknown> {
     if (error.error && error.error.message) {
       let errorMessage = `Error: ${error.error.message}`;

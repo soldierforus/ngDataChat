@@ -1,25 +1,36 @@
-<div class="chat-container">
-  <div class="messages" #messagesContainer>
-    <div class="data">
-      <img src="../assets/data.webp">
-      <h2>Hello, Captain.  I am awaiting your query...</h2>
+<div class="p-5 w-full my-40 relative bg-black/80 sm:rounded-xl sm:border sm:border-white sm:mx-auto sm:w-2/3">
+  <div class="messages max-h-80 overflow-y-auto pb-3" #messagesContainer>
+    <div class="data flex flex-col sm:flex-row sm:text-left items-center">
+      <img class="w-40 mb-4" src="../assets/data.webp">
+      <h2 class="flex items-center m-0 ml-8 text-white text-2xl font-semibold">Hello, Captain.  I am awaiting your query...</h2>
     </div>
-    <div *ngFor="let message of conversation" [ngClass]="message.role" class="message">
+    <div *ngFor="let message of conversation" [ngClass]="message.role" class="relative group">
       <markdown>{{ message.content }}</markdown>
-      <button (click)="copyMessage(message.content)">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1)" class="copy">
-          <path d="M20 2H10a2 2 0 0 0-2 2v2h8a2 2 0 0 1 2 2v8h2a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"></path><path d="M4 22h10c1.103 0 2-.897 2-2V10c0-1.103-.897-2-2-2H4c-1.103 0-2 .897-2 2v10c0 1.103.897 2 2 2zm2-10h6v2H6v-2zm0 4h6v2H6v-2z">
-          </path>
-        </svg>
+      <button class="absolute bottom-2 right-2 p-0 pointer hidden group-hover:block duration-200 transform" (click)="copyMessage(message.content)">
+      <ng-container *ngTemplateOutlet="copyIcon"></ng-container>
       </button>
     </div>
-    <button class="scroll-to-bottom" (click)="scrollToBottom()">&#8595;</button>
     <div *ngIf="conversation.length && conversation.length %2 !== 0" class="assistant">
       <p>Processing query...</p>
     </div>
   </div>
-  <form (submit)="sendMessage($event, messageInput.value)">
-    <textarea #messageInput [(ngModel)]="userMessage" name="userMessage" (keydown.enter)="handleEnterKey($event)"></textarea>
-    <button class="submit" type="submit">Send</button>
+  <form (submit)="sendMessage($event, messageInput.value)" class="flex justify-between items-center mt-5">
+    <textarea #messageInput class="p-3 rounded-lg border-2 border-gray-400 grow mr-3 resize-none w-4/5" [(ngModel)]="userMessage" name="userMessage" (keydown.enter)="handleEnterKey($event)"></textarea>
+    <div class="w-1/10 flex flex-col space-y-2">
+      <div class="flex flex-row justify-between items-center space-x-2">
+        <button (click)="copyConversation()" class="w-4/5 p-1 flex justify-center bg-gold rounded-sm cursor-pointer">
+          <ng-container *ngTemplateOutlet="copyIcon"></ng-container>
+        </button>
+        <button class="w-4/5 bg-gold text-2xl text-black rounded-sm" (click)="scrollToBottom()">&#8595;</button>
+      </div>
+      <button class="bg-gold text-black border-none py-2 px-8 rounded-sm cursor-pointer font-bold mt-auto" type="submit">Send</button>
+    </div>
   </form>
 </div>
+
+<ng-template #copyIcon>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1)" >
+    <path d="M20 2H10a2 2 0 0 0-2 2v2h8a2 2 0 0 1 2 2v8h2a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"></path><path d="M4 22h10c1.103 0 2-.897 2-2V10c0-1.103-.897-2-2-2H4c-1.103 0-2 .897-2 2v10c0 1.103.897 2 2 2zm2-10h6v2H6v-2zm0 4h6v2H6v-2z">
+    </path>
+  </svg>
+</ng-template>
