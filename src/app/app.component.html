@@ -5,7 +5,7 @@
       <h2 class="flex items-center m-0 ml-8 text-white text-2xl font-semibold">Hello, Captain.  I am awaiting your query...</h2>
     </div>
     <div *ngFor="let message of conversation" [ngClass]="message.role" class="relative group">
-      <markdown>{{ message.content }}</markdown>
+      <markdown class="prose prose-stone text-black">{{ message.content }}</markdown>
       <button class="absolute bottom-2 right-2 p-0 pointer hidden group-hover:block duration-200 transform" (click)="copyMessage(message.content)">
         <ng-container *ngTemplateOutlet="copyIcon"></ng-container>
       </button>
