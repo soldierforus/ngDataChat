@@ -1,5 +1,5 @@
 :host {
-  @apply flex flex-col bg-cover h-full;
+  @apply flex flex-col bg-cover h-screen;
   background-image: url("../assets/lcars.png");
 }
 

@@ -15,7 +15,7 @@
     </div>
   </div>
   <form (submit)="sendMessage($event, messageInput.value)" class="flex flex-col md:flex-row justify-between items-center mt-5">
-    <textarea #messageInput class="p-3 rounded-lg border-2 border-gray-400 grow md:mr-3 my-2 resize-none w-full md:w-4/5" [(ngModel)]="userMessage" name="userMessage" (keydown.enter)="handleEnterKey($event)"></textarea>
+    <textarea #messageInput class="p-3 rounded-lg border-2 border-gray-400 grow md:mr-3 my-2 resize-none w-full" [(ngModel)]="userMessage" name="userMessage" (keydown.enter)="handleEnterKey($event)"></textarea>
     <div class="w-full md:w-1/6 flex flex-col space-y-2">
       <div class="flex flex-row justify-between items-center space-x-2">
         <button (click)="copyConversation()" class="w-4/5 p-1 flex justify-center bg-gold rounded-sm cursor-pointer">
