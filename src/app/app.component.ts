@@ -18,6 +18,7 @@ export class AppComponent {
   conversation: Message[] = [];
   menuOpen: boolean = false;
   model: string = 'gpt-3.5-turbo';
+  communicator = new Audio("../assets/communicator.mp3");
 
   @ViewChild('messagesContainer') private messagesContainer!: ElementRef;
 
@@ -66,6 +67,9 @@ export class AppComponent {
   }
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
+    if(this.menuOpen === true) {
+      this.communicator.play();
+    }
   }
   selectModel(model: string) {
     this.model = model;

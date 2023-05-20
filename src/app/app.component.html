@@ -1,5 +1,5 @@
 <div class="absolute top-4 left-4">
-  <button (click)="toggleMenu()" class="communicator w-8 h-8 bg-cover" aria-label="open menu"></button>
+  <button (click)="toggleMenu()" class="communicator w-8 h-8 bg-cover hover:scale-110" aria-label="open menu"></button>
   <div class="menu font-bold relative z-20" [ngClass]="menuOpen ? 'opacity-100 w-full bg-black sm:bg-black/80 text-blue-600 duration-500 ease-in-out' : 'opacity-0 w-0 bg-gold text-transparent transition-all duration-500'">
     <ul class="p-3 cursor-pointer">
       <li>
