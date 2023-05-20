@@ -16,6 +16,8 @@ import { ErrorResponse } from './models/chat-response.model';
 export class AppComponent {
   userMessage = '';
   conversation: Message[] = [];
+  menuOpen: boolean = false;
+  model: string = 'gpt-3.5-turbo';
 
   @ViewChild('messagesContainer') private messagesContainer!: ElementRef;
 
@@ -61,6 +63,13 @@ export class AppComponent {
     let chatArrayToMessages = this.conversation.map(message => message.role +': '+ message.content);
     let chatToString = chatArrayToMessages.join("\n");
     this.clipboardService.copyFromContent(chatToString)
+  }
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
+  selectModel(model: string) {
+    this.model = model;
+    console.log("model", model);
   }
   
   private handleError(error: ErrorResponse): Observable<unknown> {

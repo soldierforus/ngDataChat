@@ -3,6 +3,10 @@
   background-image: url("../assets/lcars.png");
 }
 
+.communicator {
+  background-image: url("../assets/trek-logo.png");
+}
+
 .messages {
   min-width: 66%
 }
@@ -27,4 +31,8 @@
 
 markdown p {
   @apply text-black;
+}
+
+.menu ul li {
+  @apply hover:text-white;
 }

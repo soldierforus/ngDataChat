@@ -1,4 +1,26 @@
-<div class="p-5 w-full my-40 relative bg-black/80 sm:rounded-xl sm:border sm:border-white sm:mx-auto sm:w-2/3">
+<div class="absolute top-4 left-4">
+  <button (click)="toggleMenu()" class="communicator w-8 h-8 bg-cover" aria-label="open menu"></button>
+  <div class="menu font-bold relative z-20" [ngClass]="menuOpen ? 'opacity-100 w-full bg-black sm:bg-black/80 text-blue-600 duration-500 ease-in-out' : 'opacity-0 w-0 bg-gold text-transparent transition-all duration-500'">
+    <ul class="p-3 cursor-pointer">
+      <li>
+        <a href="https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-openai-api" target="_blank">Prompt Engineering</a>
+      </li>
+      <li>
+        <a href="https://openai.com/policies/usage-policies" target="_blank">Terms Of Service</a>
+      </li>
+      <!-- <li>
+        <a routerLink="">Changelog</a>
+      </li> -->
+    </ul>
+      <div class="text-sm text-center text-white/60 italic pb-4">
+        <div class="border border-b border-white/60 my-3 mx-auto w-5/6"></div>
+        <div>v0.3.0</div>
+        <div>Built by TmfB</div>
+      </div>
+  </div>
+</div>
+
+<div class="p-5 w-full my-56 relative bg-black/80 sm:rounded-xl sm:border sm:border-white sm:mx-auto sm:w-2/3">
   <div class="messages max-h-80 overflow-y-auto pb-3" #messagesContainer>
     <div class="data flex flex-col sm:flex-row sm:text-left items-center">
       <img class="w-40 mb-4" src="../assets/data.webp">
