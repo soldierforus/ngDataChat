@@ -1,0 +1,38 @@
+:host {
+  @apply flex flex-col bg-cover h-screen;
+  background-image: url("../../assets/lcars.png");
+}
+
+.communicator {
+  background-image: url("../../assets/trek-logo.png");
+}
+
+.messages {
+  min-width: 66%
+}
+
+.user,
+.assistant,
+.error {
+  @apply p-4 rounded-lg mb-2 font-medium;
+}
+
+.user {
+  @apply bg-white m-2 ml-10 lg:ml-20
+}
+
+.assistant {
+  @apply bg-gold mr-10 lg:mr-20;
+}
+
+.error {
+  @apply bg-red-200 border-red-400 text-red-900;
+}
+
+markdown p {
+  @apply text-black;
+}
+
+.menu ul li {
+  @apply hover:text-white;
+}

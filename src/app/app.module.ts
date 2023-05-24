@@ -7,11 +7,15 @@ import { ClipboardModule } from 'ngx-clipboard';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HomeComponent } from './Home/Home.component';
+import { ChatbotComponent } from './chatbot/chatbot.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-  ],
+      HomeComponent,
+      ChatbotComponent
+   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
