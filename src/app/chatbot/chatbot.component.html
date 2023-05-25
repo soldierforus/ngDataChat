@@ -8,46 +8,79 @@
       <li>
         <a href="https://openai.com/policies/usage-policies" target="_blank">Usage Policies</a>
       </li>
-      <!-- <li>
-        <a routerLink="">Changelog</a>
-      </li> -->
+      <li *ngIf="!logOpen"(click)="toggleChangelog()">
+        Changelog
+      </li>
+      <li *ngIf="logOpen" (click)="toggleChangelog()">
+        Data, Report to the Bridge
+      </li>
     </ul>
       <div class="text-sm text-center text-white/60 italic pb-4">
         <div class="border border-b border-white/60 my-3 mx-auto w-5/6"></div>
         <div>v.4.0</div>
         <div>Built by TmfB</div>
+        <div class="text-xs">{{model}}</div>
       </div>
   </div>
 </div>
 
-<div class="p-5 w-full my-56 relative bg-black/80 sm:rounded-xl sm:border sm:border-white sm:mx-auto sm:w-2/3">
-  <div class="messages max-h-80 overflow-y-auto pb-3" #messagesContainer>
-    <div class="data flex flex-col sm:flex-row sm:text-left items-center">
-      <img class="w-40 mb-4" src="../assets/data.webp">
-      <h2 class="flex items-center m-0 ml-8 text-white text-2xl font-semibold">Hello, Captain.  I am awaiting your query...</h2>
-    </div>
-    <div *ngFor="let message of conversation" [ngClass]="message.role" class="relative group">
-      <markdown class="prose prose-stone text-black">{{ message.content }}</markdown>
-      <button class="absolute bottom-2 right-2 p-0 pointer hidden group-hover:block duration-200 transform" (click)="copyMessage(message.content)">
-        <ng-container *ngTemplateOutlet="copyIcon"></ng-container>
-      </button>
-    </div>
-    <div *ngIf="conversation.length && conversation.length %2 !== 0" class="assistant">
-      <p>Processing query...</p>
-    </div>
-  </div>
-  <form (submit)="sendMessage($event, messageInput.value)" class="flex flex-col md:flex-row justify-between items-center mt-5">
-    <textarea #messageInput class="p-3 rounded-lg border-2 border-gray-400 grow md:mr-3 my-2 resize-none w-full" [(ngModel)]="userMessage" name="userMessage" (keydown.enter)="handleEnterKey($event)"></textarea>
-    <div class="w-full md:w-1/6 flex flex-col space-y-2">
-      <div class="flex flex-row justify-between items-center space-x-2">
-        <button (click)="copyConversation()" class="w-4/5 p-1 flex justify-center bg-gold rounded-sm cursor-pointer">
+<div class="my-56 p-5 w-full relative bg-black/80 sm:rounded-xl sm:border sm:border-white sm:mx-auto sm:w-2/3"> 
+  <div [ngClass]="logOpen ? 'opacity-0 h-0 duration-500 ease-in-out bg-gold pointer-events-none' : 'opacity-100 h-auto transition-all duration-500'">
+    <div class="messages max-h-80 overflow-y-auto pb-3" #messagesContainer>
+      <div class="data flex flex-col sm:flex-row sm:text-left items-center">
+        <img class="w-40 mb-4" src="../assets/data.webp">
+        <h2 class="flex items-center m-0 ml-8 text-white text-2xl font-semibold">Hello, Captain.  I am awaiting your query...</h2>
+      </div>
+      <div *ngFor="let message of conversation" [ngClass]="message.role" class="relative group">
+        <markdown class="prose prose-stone text-black">{{ message.content }}</markdown>
+        <button class="absolute bottom-2 right-2 p-0 pointer hidden group-hover:block duration-200 transform" (click)="copyMessage(message.content)">
           <ng-container *ngTemplateOutlet="copyIcon"></ng-container>
         </button>
-        <button (click)="scrollToBottom()" class="w-4/5 bg-gold text-2xl text-black rounded-sm">&#8595;</button>
       </div>
-      <button class="bg-gold text-black border-none py-2 px-8 rounded-sm cursor-pointer font-bold mt-auto" type="submit">Send</button>
+      <div *ngIf="conversation.length && conversation.length %2 !== 0" class="assistant">
+        <p>Processing query...</p>
+      </div>
     </div>
-  </form>
+    <form (submit)="sendMessage($event, messageInput.value)" class="flex flex-col md:flex-row justify-between items-center mt-5">
+      <textarea #messageInput class="p-3 rounded-lg border-2 border-gray-400 grow md:mr-3 my-2 resize-none w-full" [(ngModel)]="userMessage" name="userMessage" (keydown.enter)="handleEnterKey($event)"></textarea>
+      <div class="w-full md:w-1/6 flex flex-col space-y-2">
+        <div class="flex flex-row justify-between items-center space-x-2">
+          <button (click)="copyConversation()" class="w-4/5 p-1 flex justify-center bg-gold rounded-sm cursor-pointer">
+            <ng-container *ngTemplateOutlet="copyIcon"></ng-container>
+          </button>
+          <button (click)="scrollToBottom()" class="w-4/5 bg-gold text-2xl text-black rounded-sm">&#8595;</button>
+        </div>
+        <button class="bg-gold text-black border-none py-2 px-8 rounded-sm cursor-pointer font-bold mt-auto" type="submit">Send</button>
+      </div>
+    </form>
+  </div>
+  
+  <div *ngIf="logOpen" [ngClass]="logOpen ? 'opacity-100 h-96 duration-500 ease-in-out text-white flex flex-row justify-center overflow-y-auto pointer-events-auto' : ' absolute opacity-0 h-0 bg-gold text-transparent transition-all duration-500'">
+    <div class="w-full flex flex-row justify-evenly">
+      <div class="w-3/5 sm:w-1/3 md:w-1/4">
+        <h3 class="text-lg font-bold">Coming Soon</h3>
+        <ul class="list-disc">
+          <li>Replicator - Integrate DALL-E for image creation</li>
+          <li>Highlight syntax for code snippets</li>
+          <li>Update fonts</li>
+        </ul>
+      </div>
+      <div class="w-3/5 sm:w-1/3 md:w-1/4">
+        <h3 class="text-lg font-bold">Changelog</h3>
+        <ul class="list-disc">
+          <li class="line-through">v1.0.0 Added Changelog</li>
+          <li class="line-through">v0.7.1 Updated to focus on bottom of messages when a new message is sent</li>
+          <li class="line-through">v0.7.0 Created routes for homepage & Data Chatta</li>
+          <li class="line-through">v0.6.0 Added Communicator menu; with usage policy and prompt engineering links</li>
+          <li class="line-through">v0.5.0 Copy code for all messages</li>
+          <li class="line-through">v0.4.0 Refactored code and added tailwind css; styles for code blocks</li>
+          <li class="line-through">v0.3.0 Added copy buttons for messsages</li>
+          <li class="line-through">v0.2.0 Style updates</li>
+          <li class="line-through">v0.1.0 Chatbot</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>
 
 <ng-template #copyIcon>

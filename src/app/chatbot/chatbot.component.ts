@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { catchError, take, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { ClipboardService } from 'ngx-clipboard';
@@ -11,12 +11,13 @@ import { ErrorResponse } from '../models/chat-response.model';
 @Component({
   selector: 'app-chatbot',
   templateUrl: './chatbot.component.html',
-  styleUrls: ['./chatbot.component.css']
 })
 export class ChatbotComponent  {
   userMessage = '';
   conversation: Message[] = [];
   menuOpen: boolean = false;
+  logOpen: boolean = false;
+
   model: string = 'gpt-3.5-turbo';
   communicator = new Audio("../assets/communicator.mp3");
 
@@ -29,6 +30,7 @@ export class ChatbotComponent  {
     if (!message.trim()) return;
 
     this.conversation.push({ role: 'user', content: message });
+    this.scrollToBottom();
     this.userMessage = '';
 
     this.chatGptService
@@ -38,12 +40,10 @@ export class ChatbotComponent  {
         tap(response => {
           const assistantMessage = response.choices[0].message.content;
           this.conversation.push({ role: 'assistant', content: assistantMessage });
-          this.scrollToBottom();
         }),
         catchError((error) => this.handleError(error))
       )
       .subscribe();
-      this.scrollToBottom();
   }
 
   handleEnterKey(event: Event): void {
@@ -71,6 +71,9 @@ export class ChatbotComponent  {
     if(this.menuOpen === true) {
       this.communicator.play();
     }
+  }
+  toggleChangelog() {
+    this.logOpen = !this.logOpen;
   }
   selectModel(model: string) {
     this.model = model;
