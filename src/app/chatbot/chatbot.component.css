@@ -36,3 +36,7 @@ markdown p {
 .menu ul li {
   @apply hover:text-white;
 }
+
+.list-disc li {
+  @apply mb-1;
+}
