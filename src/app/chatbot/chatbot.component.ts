@@ -11,6 +11,7 @@ import { ErrorResponse } from '../models/chat-response.model';
 @Component({
   selector: 'app-chatbot',
   templateUrl: './chatbot.component.html',
+  styleUrls: ['./chatbot.component.css']
 })
 export class ChatbotComponent  {
   userMessage = '';
