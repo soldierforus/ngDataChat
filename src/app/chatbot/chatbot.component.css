@@ -8,7 +8,11 @@
 }
 
 .messages {
-  min-width: 66%
+  min-width: 66%;
+}
+
+.message-container {
+  min-height: 24rem;
 }
 
 .user,
