@@ -39,7 +39,10 @@ export class ChatbotComponent  {
       .pipe(
         take(1),
         tap(response => {
-          const assistantMessage = response.choices[0].message.content;
+          let assistantMessage = response.choices[0].message.content;
+          if (assistantMessage.includes("As an AI language model")) {
+            assistantMessage = assistantMessage.replace("As an AI language model", "As an android")
+          };
           this.conversation.push({ role: 'assistant', content: assistantMessage });
         }),
         catchError((error) => this.handleError(error))
